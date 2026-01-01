@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Happy New Year</title>
+    <title>Happy New Year - IngIng & P'Ja</title>
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +17,7 @@
         body {
             margin: 0; padding: 0;
             background: var(--bg-color);
-            overflow: hidden;
+            overflow: hidden; /* ห้ามเลื่อนที่ตัว Body เพื่อให้พื้นหลังนิ่ง */
             font-family: 'Mali', cursive; 
             width: 100vw; height: 100dvh; touch-action: none; position: fixed; color: #fff;
         }
@@ -198,9 +198,9 @@
     <canvas id="canvas"></canvas>
     
     <div id="name-container">
-        <h1 class="glowing-text">ชื่อ 💗 ชื่อแฟน</h1>
+        <h1 class="glowing-text">น้องอิงอิง 💗 พี่จ๋า</h1>
         <div id="love-timer-container">
-            <span class="timer-label">เรารักกันมา.. 1 ม.ค. 68</span>
+            <span class="timer-label">เรารักกันมา.. 12 ก.ค. 67</span>
             <div id="love-timer">กำลังคำนวณ...</div>
         </div>
     </div>
@@ -218,8 +218,10 @@
         <div class="title-msg">Happy New Year 2026 🎉</div>
         
         <div class="body-msg">
-            ใส่ข้อความอวยพรตรงนี้...
-<span class="beating-heart" style="font-size: 1.2em;">รักนะ ❤️</span>
+ขอบคุณนะที่รักคนนี้ ขอบคุณทุกอย่าง 
+อยู่เป็นหมูอ้วนให้พี่แบบนี้ไปนานๆ นะ รักมากๆ เลย 
+
+<span class="beating-heart" style="font-size: 1.2em;">รักมากขึ้นทู๊กกกกวันนนนนเลยยย ❤️</span>
         </div>
         
         <div class="photo-frame" onclick="nextPhoto()">
@@ -227,7 +229,7 @@
         </div>
         <div class="click-hint">แตะที่รูปเพื่อดูรูปอื่นๆ 📸</div>
 
-        <button class="love-note-btn" onclick="showNextNote()">💌 กดเมื่อคิดถึง</button>
+        <button class="love-note-btn" onclick="showNextNote()">💌 กดเร็ววว</button>
     </div>
 
     <div id="note-popup">
@@ -236,13 +238,15 @@
     </div>
 
     <script>
-        // --- 1. วันที่เริ่มรัก (แก้ไขตรงนี้) ---
-        const startDate = new Date("2025-01-01T00:00:00"); 
+        // --- 1. วันที่เริ่มรัก (12 กรกฎาคม 2024 = ค.ศ. 2024) ---
+        // ใช้ 2024 เพราะปีปัจจุบันในบริบทคือ 2026 ตามที่ระบุ
+        const startDate = new Date("2024-07-12T00:00:00"); 
 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
             
+            // ป้องกันเวลาติดลบ กรณีเทสก่อนวันจริง
             if (diff < 0) {
                  document.getElementById('love-timer').innerHTML = "รอวันครบรอบอยู่นะ...";
                  return;
@@ -264,19 +268,22 @@
 
         // --- ระบบข้อความ (เรียงลำดับ ไม่สุ่ม) ---
         const loveNotes = [
-            "ข้อความที่ 1",
-            "ข้อความที่ 2",
-            "ข้อความที่ 3",
-            "ข้อความที่ 4",
-            "ข้อความที่ 5"
+            "รักหนูมากๆเลยนะ",
+            "อยู่ตรงนี้แหละ ไม่ไปไหน",
+            "เหนื่อยมากอดกันนะ",
+            "ขอบคุณนะที่เข้ามาเป็นความสุขให้พี่",
+            "อยู่กับพี่ไปนานๆนะ"
         ];
 
-        let currentNoteIndex = 0; 
+        let currentNoteIndex = 0; // ตัวแปรเก็บลำดับข้อความปัจจุบัน
 
         function showNextNote() {
             const popup = document.getElementById('note-popup');
+            // แสดงข้อความตามลำดับ
             document.getElementById('note-content').innerText = loveNotes[currentNoteIndex];
             popup.classList.add('show');
+            
+            // เพิ่มลำดับไปตัวถัดไป ถ้าเกินจำนวนให้วนกลับไปเริ่ม 0
             currentNoteIndex = (currentNoteIndex + 1) % loveNotes.length;
         }
 
@@ -338,13 +345,8 @@
             }
         }
 
-        // --- Photo System (แก้ไขตรงนี้ให้มี 8 รูป) ---
-        const photoList = [
-            'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 
-            'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 
-            'photo7.jpg', 'photo8.jpg'
-        ];
-        
+        // --- Photo System ---
+        const photoList = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg'];
         let currentPhotoIndex = 0; const imgElement = document.getElementById('slideshow-img'); let isChanging = false;
         function nextPhoto() {
             if (isChanging) return; isChanging = true; imgElement.classList.add('photo-fade-out');
