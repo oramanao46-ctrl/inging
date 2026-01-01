@@ -136,26 +136,28 @@
 
         .title-msg { font-size: 1.5rem; color: #ff69b4; font-weight: 700; margin-bottom: 10px; text-align: center; flex-shrink: 0; }
         
-        /* --- CSS สำหรับ Mini Gallery --- */
+        /* --- CSS สำหรับ Mini Gallery (เพิ่มใหม่) --- */
         #mini-gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 20px;
             width: 95%;
+            padding: 0 10px;
         }
         .mini-photo {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             object-fit: cover;
-            border-radius: 12px;
-            border: 3px solid #fff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         .mini-photo:hover {
-            transform: scale(1.1) rotate(2deg);
+            transform: scale(1.1);
             z-index: 5;
         }
 
@@ -188,6 +190,7 @@
             transition: transform 0.2s;
             flex-shrink: 0;
             margin-bottom: 30px; 
+            animation: heartbeat 1.5s infinite; 
         }
         .love-note-btn:active { transform: scale(0.95); }
         
@@ -242,14 +245,14 @@
         <div class="title-msg">Happy New Year 2026 🎉</div>
         
         <div id="mini-gallery">
-            <img src="photo1.jpg" class="mini-photo" alt="photo1">
-            <img src="photo2.jpg" class="mini-photo" alt="photo2">
-            <img src="photo3.jpg" class="mini-photo" alt="photo3">
-            <img src="photo4.jpg" class="mini-photo" alt="photo4">
-            <img src="photo5.jpg" class="mini-photo" alt="photo5">
-            <img src="photo6.jpg" class="mini-photo" alt="photo6">
-            <img src="photo7.jpg" class="mini-photo" alt="photo7">
-            <img src="photo8.jpg" class="mini-photo" alt="photo8">
+            <img src="photo1.jpg" class="mini-photo" onclick="changeMainPhoto(0)">
+            <img src="photo2.jpg" class="mini-photo" onclick="changeMainPhoto(1)">
+            <img src="photo3.jpg" class="mini-photo" onclick="changeMainPhoto(2)">
+            <img src="photo4.jpg" class="mini-photo" onclick="changeMainPhoto(3)">
+            <img src="photo5.jpg" class="mini-photo" onclick="changeMainPhoto(4)">
+            <img src="photo6.jpg" class="mini-photo" onclick="changeMainPhoto(5)">
+            <img src="photo7.jpg" class="mini-photo" onclick="changeMainPhoto(6)">
+            <img src="photo8.jpg" class="mini-photo" onclick="changeMainPhoto(7)">
         </div>
 
         <div class="body-msg">
@@ -380,17 +383,33 @@
             }
         }
 
-        // --- Photo System (แก้ไขตรงนี้ให้มี 8 รูป) ---
+        // --- Photo System (รองรับ 8 รูป) ---
         const photoList = [
             'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 
             'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 
             'photo7.jpg', 'photo8.jpg'
         ];
-
+        
         let currentPhotoIndex = 0; const imgElement = document.getElementById('slideshow-img'); let isChanging = false;
+        
         function nextPhoto() {
             if (isChanging) return; isChanging = true; imgElement.classList.add('photo-fade-out');
             setTimeout(() => { currentPhotoIndex = (currentPhotoIndex + 1) % photoList.length; imgElement.src = photoList[currentPhotoIndex]; imgElement.onload = () => { imgElement.classList.remove('photo-fade-out'); isChanging = false; }; }, 500);
+        }
+
+        // ฟังก์ชันสำหรับคลิกที่รูปเล็กเพื่อเปลี่ยนรูปใหญ่
+        function changeMainPhoto(index) {
+            if (isChanging) return;
+            isChanging = true;
+            imgElement.classList.add('photo-fade-out');
+            setTimeout(() => {
+                currentPhotoIndex = index;
+                imgElement.src = photoList[currentPhotoIndex];
+                imgElement.onload = () => {
+                    imgElement.classList.remove('photo-fade-out');
+                    isChanging = false;
+                };
+            }, 300);
         }
 
         // --- Fireworks System ---
