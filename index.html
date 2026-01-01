@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Happy New Year - IngIng & P'Ja</title>
+    <title>Happy New Year</title>
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +17,7 @@
         body {
             margin: 0; padding: 0;
             background: var(--bg-color);
-            overflow: hidden; /* ห้ามเลื่อนที่ตัว Body เพื่อให้พื้นหลังนิ่ง */
+            overflow: hidden;
             font-family: 'Mali', cursive; 
             width: 100vw; height: 100dvh; touch-action: none; position: fixed; color: #fff;
         }
@@ -135,30 +135,6 @@
         #content-box.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
         .title-msg { font-size: 1.5rem; color: #ff69b4; font-weight: 700; margin-bottom: 10px; text-align: center; flex-shrink: 0; }
-        
-        /* --- CSS สำหรับ Mini Gallery (เพิ่มใหม่) --- */
-        #mini-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            width: 95%;
-        }
-        .mini-photo {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 3px solid #fff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .mini-photo:hover {
-            transform: scale(1.1) rotate(2deg);
-            z-index: 5;
-        }
-
         .body-msg { 
             font-size: 0.95rem; color: var(--text-sub); font-weight: 500; 
             text-align: center; line-height: 1.6; margin-bottom: 20px; 
@@ -222,9 +198,9 @@
     <canvas id="canvas"></canvas>
     
     <div id="name-container">
-        <h1 class="glowing-text">น้องอิงอิง 💗 พี่จ๋า</h1>
+        <h1 class="glowing-text">ชื่อ 💗 ชื่อแฟน</h1>
         <div id="love-timer-container">
-            <span class="timer-label">เรารักกันมา.. 12 ก.ค. 67</span>
+            <span class="timer-label">เรารักกันมา.. 1 ม.ค. 68</span>
             <div id="love-timer">กำลังคำนวณ...</div>
         </div>
     </div>
@@ -241,19 +217,9 @@
     <div id="content-box">
         <div class="title-msg">Happy New Year 2026 🎉</div>
         
-        <div id="mini-gallery">
-            <img src="photo4.jpg" class="mini-photo" alt="photo4">
-            <img src="photo5.jpg" class="mini-photo" alt="photo5">
-            <img src="photo6.jpg" class="mini-photo" alt="photo6">
-            <img src="photo7.jpg" class="mini-photo" alt="photo7">
-            <img src="photo8.jpg" class="mini-photo" alt="photo8">
-        </div>
-
         <div class="body-msg">
-ขอบคุณนะที่รักคนนี้ ขอบคุณทุกอย่าง 
-อยู่เป็นหมูอ้วนให้พี่แบบนี้ไปนานๆ นะ รักมากๆ เลย 
-
-<span class="beating-heart" style="font-size: 1.2em;">รักมากขึ้นทู๊กกกกวันนนนนเลยยย ❤️</span>
+            ใส่ข้อความอวยพรตรงนี้...
+<span class="beating-heart" style="font-size: 1.2em;">รักนะ ❤️</span>
         </div>
         
         <div class="photo-frame" onclick="nextPhoto()">
@@ -261,7 +227,7 @@
         </div>
         <div class="click-hint">แตะที่รูปเพื่อดูรูปอื่นๆ 📸</div>
 
-        <button class="love-note-btn" onclick="showNextNote()">💌 กดเร็ววว</button>
+        <button class="love-note-btn" onclick="showNextNote()">💌 กดเมื่อคิดถึง</button>
     </div>
 
     <div id="note-popup">
@@ -270,15 +236,13 @@
     </div>
 
     <script>
-        // --- 1. วันที่เริ่มรัก (12 กรกฎาคม 2024 = ค.ศ. 2024) ---
-        // ใช้ 2024 เพราะปีปัจจุบันในบริบทคือ 2026 ตามที่ระบุ
-        const startDate = new Date("2024-07-12T00:00:00"); 
+        // --- 1. วันที่เริ่มรัก (แก้ไขตรงนี้) ---
+        const startDate = new Date("2025-01-01T00:00:00"); 
 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
             
-            // ป้องกันเวลาติดลบ กรณีเทสก่อนวันจริง
             if (diff < 0) {
                  document.getElementById('love-timer').innerHTML = "รอวันครบรอบอยู่นะ...";
                  return;
@@ -300,22 +264,19 @@
 
         // --- ระบบข้อความ (เรียงลำดับ ไม่สุ่ม) ---
         const loveNotes = [
-            "รักหนูมากๆเลยนะ",
-            "อยู่ตรงนี้แหละ ไม่ไปไหน",
-            "เหนื่อยมากอดกันนะ",
-            "ขอบคุณนะที่เข้ามาเป็นความสุขให้พี่",
-            "อยู่กับพี่ไปนานๆนะ"
+            "ข้อความที่ 1",
+            "ข้อความที่ 2",
+            "ข้อความที่ 3",
+            "ข้อความที่ 4",
+            "ข้อความที่ 5"
         ];
 
-        let currentNoteIndex = 0; // ตัวแปรเก็บลำดับข้อความปัจจุบัน
+        let currentNoteIndex = 0; 
 
         function showNextNote() {
             const popup = document.getElementById('note-popup');
-            // แสดงข้อความตามลำดับ
             document.getElementById('note-content').innerText = loveNotes[currentNoteIndex];
             popup.classList.add('show');
-            
-            // เพิ่มลำดับไปตัวถัดไป ถ้าเกินจำนวนให้วนกลับไปเริ่ม 0
             currentNoteIndex = (currentNoteIndex + 1) % loveNotes.length;
         }
 
@@ -377,8 +338,13 @@
             }
         }
 
-        // --- Photo System ---
-        const photoList = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg'];
+        // --- Photo System (แก้ไขตรงนี้ให้มี 8 รูป) ---
+        const photoList = [
+            'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 
+            'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 
+            'photo7.jpg', 'photo8.jpg'
+        ];
+        
         let currentPhotoIndex = 0; const imgElement = document.getElementById('slideshow-img'); let isChanging = false;
         function nextPhoto() {
             if (isChanging) return; isChanging = true; imgElement.classList.add('photo-fade-out');
